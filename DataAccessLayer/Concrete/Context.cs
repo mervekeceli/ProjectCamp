@@ -11,6 +11,7 @@ namespace DataAccessLayer.Concrete
 {
     public class Context : DbContext
     {
+        public Context(){}
         public Context(DbContextOptions<Context> options) : base(options) { }
 
         //DB'ye yansıtılacak tablolar
