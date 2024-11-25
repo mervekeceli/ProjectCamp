@@ -16,8 +16,9 @@ namespace UI.Controllers
 
         public IActionResult GetCategoryList()
         {
-            var categoryValues = categoryManager.GetAllBL();
-            return View(categoryValues);
+            //var categoryValues = categoryManager.GetAllBL();
+            //return View(categoryValues);
+            return View();
         }
 
 
@@ -31,7 +32,7 @@ namespace UI.Controllers
         [HttpPost]
         public IActionResult AddCategory(Category category)
         {
-            categoryManager.CategoryAddBL(category);
+            //categoryManager.CategoryAddBL(category);
             return RedirectToAction("GetCategoryList");
         }
     }
