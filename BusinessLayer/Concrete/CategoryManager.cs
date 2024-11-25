@@ -19,15 +19,15 @@ namespace BusinessLayer.Concrete
 
         public void CategoryAddBL(Category category)
         {
-            if(category.CategoryName == null || category.CategoryName.Length <= 3 || 
-                category.CategoryDescription == null || category.CategoryName.Length >= 51)
-            {
-                //Error message
-            }
-            else
-            {
+            //if(category.CategoryName == null || category.CategoryName.Length <= 3 || 
+            //    category.CategoryDescription == null || category.CategoryName.Length >= 51)
+            //{
+            //    //Error message
+            //}
+            //else
+            //{
                 repository.Insert(category);
-            }
+            //}
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UI.Controllers
@@ -17,6 +18,21 @@ namespace UI.Controllers
         {
             var categoryValues = categoryManager.GetAllBL();
             return View(categoryValues);
+        }
+
+
+        [HttpGet]
+        public IActionResult AddCategory()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult AddCategory(Category category)
+        {
+            categoryManager.CategoryAddBL(category);
+            return RedirectToAction("GetCategoryList");
         }
     }
 }
