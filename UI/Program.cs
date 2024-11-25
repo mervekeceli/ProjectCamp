@@ -13,7 +13,7 @@ internal class Program
 
         // Baðlantý dizesini "appsettings.json" dosyasýndan alýyoruz ve DbContext'i yapýlandýrýyoruz.
         builder.Services.AddDbContext<Context>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=ProjectCamp;Trusted_Connection=True;MultipleActiveResultSets=true"));
 
         var app = builder.Build();
 

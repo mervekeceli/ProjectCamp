@@ -14,7 +14,7 @@ namespace DataAccessLayer.Concrete.Repositories
     {
         Context c = new Context();
         DbSet<Category> _object;
-        public void Delete(EntityLayer.Concrete.Category category)
+        public void Delete(Category category)
         {
             _object.Remove(category);
             c.SaveChanges();
