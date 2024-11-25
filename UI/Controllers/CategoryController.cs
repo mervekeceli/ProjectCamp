@@ -1,13 +1,14 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UI.Controllers
 {
     public class CategoryController : Controller
-    {    
-        CategoryManager categoryManager = new CategoryManager();
+    {
+        CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
         //Get: Category
         public IActionResult Index()
         {
@@ -16,9 +17,8 @@ namespace UI.Controllers
 
         public IActionResult GetCategoryList()
         {
-            //var categoryValues = categoryManager.GetAllBL();
-            //return View(categoryValues);
-            return View();
+            var categoryValues = categoryManager.GetList();
+            return View(categoryValues);
         }
 
 
