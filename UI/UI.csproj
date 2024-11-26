@@ -353,10 +353,6 @@
     <None Include="wwwroot\AdminLTE-3.1.0\docs\_includes\sidebar.html" />
     <None Include="wwwroot\AdminLTE-3.1.0\docs\_layouts\default.html" />
     <None Include="wwwroot\AdminLTE-3.1.0\docs\_layouts\page.html" />
-    <None Include="wwwroot\AdminLTE-3.1.0\iframe.html" />
-    <None Include="wwwroot\AdminLTE-3.1.0\index.html" />
-    <None Include="wwwroot\AdminLTE-3.1.0\index2.html" />
-    <None Include="wwwroot\AdminLTE-3.1.0\index3.html" />
     <None Include="wwwroot\AdminLTE-3.1.0\pages\calendar.html" />
     <None Include="wwwroot\AdminLTE-3.1.0\pages\charts\chartjs.html" />
     <None Include="wwwroot\AdminLTE-3.1.0\pages\charts\flot.html" />
@@ -2316,7 +2312,6 @@
     <None Include="wwwroot\AdminLTE-3.1.0\plugins\uplot\uPlot.iife.js" />
     <None Include="wwwroot\AdminLTE-3.1.0\plugins\uplot\uPlot.iife.min.js" />
     <None Include="wwwroot\AdminLTE-3.1.0\plugins\uplot\uPlot.min.css" />
-    <None Include="wwwroot\AdminLTE-3.1.0\starter.html" />
   </ItemGroup>
 
   <ItemGroup>

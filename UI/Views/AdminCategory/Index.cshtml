@@ -1,27 +1,57 @@
-﻿
+﻿@using EntityLayer.Concrete
+@model List<Category>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<br /><br />
-<table class="table table-bordered">
-    <tr>
-        <th>Id</th>
-        <th>Kategori</th>
-        <th>Açıklama</th>
-        <th>Durum</th>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>Spor</td>
-        <td>Spor Açıklaması</td>
-        <td>Aktif</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>Yazılım</td>
-        <td>Yazılım Açıklaması</td>
-        <td>Aktif</td>
-    </tr>
-</table>
+<br />
+<div class="container-fluid">
+    <a class="btn btn-info" href="/AdminCategory/AddCategory">Kategori Ekle</a>
+</div>
+<br />
+<div class="container-fluid">
+    <div class="row">
+        
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Kategoriler</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Kategori Adı</th>
+                                <th>Açıklama</th>
+                                <th style="width: 40px">Durum</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var category in Model)
+                            {
+                                <tr>
+                                    <th>@category.CategoryId</th>
+                                    <td>@category.CategoryName</td>
+                                    <td>@category.CategoryDescription</td>
+                                    <td><span class="badge @(category.CategoryStatus == true ? "bg-success" : "bg-danger") ">@category.CategoryStatus</span></td>
+                                    <td>
+                                        <button class="btn btn-outline-danger">Sil</button> | 
+                                        <button class="btn btn-outline-warning">Güncelle</button> 
+                                    </td>
+                                </tr>
+                            }
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
