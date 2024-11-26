@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.ValidationRules_FluentValidation_
 {
-    public class CategoryValidatior : AbstractValidator<Category>
+    public class CategoryValidator : AbstractValidator<Category>
     {
-        public CategoryValidatior() 
+        public CategoryValidator() 
         {
             RuleFor(x => x.CategoryName).NotEmpty().WithMessage("Kategori adı boş olamaz!");
             RuleFor(x=>x.CategoryDescription).NotEmpty().WithMessage("Açıklama boş olamaz!");
-            RuleFor(x => x.CategoryName).Length(50).WithMessage("50 karakterden fazla değer girişi yapamazsınız!");
+            RuleFor(x => x.CategoryName).MinimumLength(3).WithMessage("3 karakterden az değer girişi yapamazsınız!");
+            RuleFor(x => x.CategoryName).MaximumLength(50).WithMessage("50 karakterden fazla değer girişi yapamazsınız!");
         }
     }
 }

@@ -1,8 +1,13 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules_FluentValidation_;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using FluentValidation;
+using ValidationResult = FluentValidation.Results.ValidationResult;
+
 
 namespace UI.Controllers
 {
@@ -33,7 +38,22 @@ namespace UI.Controllers
         public IActionResult AddCategory(Category category)
         {
             //categoryManager.CategoryAddBL(category);
-            return RedirectToAction("GetCategoryList");
+            var categoryValidator = new CategoryValidator();
+            ValidationResult results = categoryValidator.Validate(category);
+
+            if (results.IsValid)
+            {
+                categoryManager.CagetgoryAdd(category);
+                return RedirectToAction("GetCategoryList");
+            }
+            else
+            {
+                foreach(var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
         }
     }
 }

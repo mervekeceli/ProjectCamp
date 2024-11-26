@@ -1,9 +1,28 @@
-﻿<h5>Kategori Ekle</h5>
+﻿@model EntityLayer.Concrete.Category
 
-<form class="form-group" method="post">
+<h5>Kategori Ekle</h5>
+@using(Html.BeginForm("AddCategory", "Category", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.Label("Kategori Adı")
+        @Html.TextBoxFor(x=> x.CategoryName)
+        @Html.ValidationMessageFor(x=>x.CategoryName)
+        <br /><br />
+
+        @Html.Label("Açıklama")
+        @Html.TextBoxFor(x=>x.CategoryDescription)
+        @Html.ValidationMessageFor(x => x.CategoryDescription)
+
+        <br /> <br />
+
+        <button class="btn btn-outline-secondary">Kaydet</button>
+    </div>
+}
+
+@* <form class="form-group" method="post">
     <input type="text" placeholder="Kategori Adı" name="CategoryName" class="form-control" />
     <br />
     <input type="text" placeholder="Kategori Açıklama" name="CategoryDescription" class="form-control" />
     <br />
     <button type="submit" class="btn btn-success">Kaydet</button>
-</form>
+</form> *@
