@@ -3,4 +3,8 @@
 3.DBContext ayarlarý ile db konfigürasyonlarý yapýldý <br />
 4.Migration ile db oluþturuldu <br />
  -add-migration MigName <br />
- -update-database <br />
+ -update-database <br /><br />
+
+NOT: Writer tablosunda sonradan güncelleme yaptýktan sonra þu þekidle migration yaptýrdý:<br />
+- EntityFrameworkcore\add-migration MigName <br />
+- EntityFrameworkcore\update-databse <br />
