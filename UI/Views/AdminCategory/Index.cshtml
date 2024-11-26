@@ -39,7 +39,7 @@
                                     <td><span class="badge @(category.CategoryStatus == true ? "bg-success" : "bg-danger") ">@category.CategoryStatus</span></td>
                                     <td>
                                         <a href="/AdminCategory/DeleteCategory/@category.CategoryId" class="btn btn-outline-danger">Sil</a> |
-                                        <button class="btn btn-outline-warning">Güncelle</button> 
+                                        <a href="/AdminCategory/EditCategory/@category.CategoryId" class="btn btn-outline-warning">Güncelle</a>
                                     </td>
                                 </tr>
                             }

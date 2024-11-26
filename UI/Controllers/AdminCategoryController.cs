@@ -31,12 +31,12 @@ namespace UI.Controllers
 
             if (results.IsValid)
             {
-               categoryManager.CagetgoryAdd(category);
-               return RedirectToAction("Index");
+                categoryManager.CagetgoryAdd(category);
+                return RedirectToAction("Index");
             }
             else
             {
-                foreach(var error in results.Errors)
+                foreach (var error in results.Errors)
                 {
                     ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
                 }
@@ -48,6 +48,21 @@ namespace UI.Controllers
         {
             var categoryValue = categoryManager.GetById(id);
             categoryManager.CategoryDelete(categoryValue);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult EditCategory(int id)
+        {
+            var categoryValues = categoryManager.GetById(id);
+            return View(categoryValues);
+        }
+
+
+        [HttpPost]
+        public IActionResult EditCategory(Category category)
+        {
+            categoryManager.CategoryUpdate(category);
             return RedirectToAction("Index");
         }
     }
