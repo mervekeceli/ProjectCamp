@@ -10,6 +10,7 @@ namespace UI.Controllers
     public class AdminWriterController : Controller
     {
         WriterManager writerManager = new WriterManager(new EFWriterDal());
+        WriterValidator writerValidator = new WriterValidator();
         public IActionResult Index()
         {
             var writerValues = writerManager.GetList();
@@ -26,12 +27,39 @@ namespace UI.Controllers
         [HttpPost]
         public IActionResult AddWriter(Writer writer)
         {
-            WriterValidator writerValidator = new WriterValidator();
             ValidationResult results = writerValidator.Validate(writer);
 
             if (results.IsValid)
             {
                 writerManager.WriterAdd(writer);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult EditWriter(int id)
+        {
+            var writerValue = writerManager.GetById(id);
+            return View(writerValue);
+        }
+
+
+        [HttpPost]
+        public IActionResult EditWriter(Writer writer)
+        {
+            ValidationResult results = writerValidator.Validate(writer);
+
+            if (results.IsValid)
+            {
+                writerManager.WriterUpdate(writer);
                 return RedirectToAction("Index");
             }
             else

@@ -1,25 +1,29 @@
 ﻿@model EntityLayer.Concrete.Writer
 @{
-    ViewData["Title"] = "AddWriter";
+    ViewData["Title"] = "EditWriter";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <br />
 
 <div class="col-md-12 col-lg-12 col-sm-12">
     <!-- general form elements -->
-    <div class="card card-info">
+    <div class="card card-warning">
         <div class="card-header">
-            <h3 class="card-title">Yazar Ekle</h3>
+            <h3 class="card-title">Yazar Güncelle</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        @using (Html.BeginForm("AddWriter", "AdminWriter", FormMethod.Post))
+        @using (Html.BeginForm("EditWriter", "AdminWriter", FormMethod.Post))
         {
             <div class="card-body">
                 <div class="form-group">
                     @Html.Label("Yazar Adı")
+                    @Html.TextBoxFor(x => x.WriterId, new { @class = "form-control"})
+                </div>
+                <div class="form-group">
+                    @Html.Label("Yazar Adı")
                     @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.WriterName, null, new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(x => x.WriterName, null, new {@class = "text-danger"})
                 </div>
                 <div class="form-group">
                     @Html.Label("Yazar Soyadı")
@@ -51,7 +55,7 @@
                     @Html.TextBoxFor(x => x.WriterAbout, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.WriterAbout, null, new { @class = "text-danger" })
                 </div>
-                <button type="submit" class="btn btn-info">Kaydet</button>
+                <button type="submit" class="btn btn-warning">Kaydet</button>
             </div>
         }
     </div>
