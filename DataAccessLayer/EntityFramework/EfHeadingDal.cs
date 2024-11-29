@@ -1,6 +1,8 @@
 ﻿using DataAccessLayer.Abstract;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.Repositories;
 using EntityLayer.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +13,17 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfHeadingDal : GenericRepository<Heading>, IHeadingDal
     {
+        //Gözden Geçir
+        Context context = new Context();
+        DbSet<Heading> _object;
+
+        public EfHeadingDal()
+        {
+            _object = context.Set<Heading>();
+        }
+        public override List<Heading> List()
+        {
+            return _object.Include(x=>x.Writer).Include(y=>y.Category).ToList();
+        }
     }
 }

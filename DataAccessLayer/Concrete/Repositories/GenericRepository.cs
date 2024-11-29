@@ -39,7 +39,7 @@ namespace DataAccessLayer.Concrete.Repositories
             context.SaveChanges();
         }
 
-        public List<T> List()
+        public virtual List<T> List()
         {
             return _object.ToList();
         }

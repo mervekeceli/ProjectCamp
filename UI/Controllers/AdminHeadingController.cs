@@ -50,5 +50,11 @@ namespace UI.Controllers
             headingManager.HeadingAdd(heading);
             return RedirectToAction("Index");
         }
+
+
+        public IActionResult ContentByHeading() //Başlıkları içeriğe göre getir
+        {
+            return View();
+        }
     }
 }

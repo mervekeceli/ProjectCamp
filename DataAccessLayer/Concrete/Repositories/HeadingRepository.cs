@@ -32,7 +32,7 @@ namespace DataAccessLayer.Concrete.Repositories
 
         public List<Heading> List()
         {
-            throw new NotImplementedException();
+            return _object.Include(x=>x.Category).Include(y=>y.Writer).ToList();
         }
 
         public List<Heading> List(Expression<Func<Heading, bool>> filter)
