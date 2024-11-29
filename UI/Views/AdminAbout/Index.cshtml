@@ -1,0 +1,85 @@
+﻿@using EntityLayer.Concrete
+@model List<About>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<div class="container-fluid">
+    <button class="btn btn-info" data-toggle="modal" data-target="#Modal1">
+        Yeni Hakkımızda Yazı Girişi
+    </button>
+</div>
+<br />
+
+<!-- /.col -->
+<div class="col-md-12 col-lg-12 col-sm-12">
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Hakkımda Veri Listesi</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th style="width: 10px">#</th>
+                        <th>Hakkımda Başlık</th>
+                        <th>Hakkımda İçerik</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var about in Model){
+                        <tr>
+                            <td>@about.AboutId</td>
+                            <td>Başlık</td>
+                            <td>@about.AboutDetails1</td>
+                            <td>
+                                <button class="btn btn-success">Aktif Yap</button>
+                                <button class="btn btn-danger">Pasif Yap</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+<!-- /.col -->
+
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Hakkımızda Metin Girişi</h3>
+                </div>
+                <form method="post" action="/AdminAbout/AddAbout">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Hakkımda Metin 1</label>
+                            <input type="text" name="AboutDetails1" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Hakkımda Metin 2</label>
+                            <input type="text" name="AboutDetails2" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Hakkımda Görsel 1</label>
+                            <input type="text" name="AboutImage1" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Hakkımda Görsel 2</label>
+                            <input type="text" name="AboutImage2" class="form-control" />
+                        </div>
+                        <button class="btn btn-success">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
