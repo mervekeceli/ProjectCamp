@@ -1,0 +1,41 @@
+﻿@model EntityLayer.Concrete.Heading
+@{
+    ViewData["Title"] = "AddHeading";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+
+<div class="col-md-12 col-lg-12 col-sm-12">
+    <!-- general form elements -->
+    <div class="card card-info">
+        <div class="card-header">
+            <h3 class="card-title">Başlık Ekle</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        @using (Html.BeginForm("AddHeading", "AdminHeading", FormMethod.Post))
+        {
+            <div class="card-body">
+                <div class="form-group">
+                    @Html.Label("Başlık Adı")
+                    @Html.TextBoxFor(x => x.HeadingName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.HeadingName, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Kategori")
+                    @Html.DropDownListFor(x => x.CategoryId,(List<SelectListItem>)ViewBag.vlc, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.CategoryId, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Yazar")
+                    @Html.DropDownListFor(x => x.WriterId, (List<SelectListItem>)ViewBag.vlw, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.WriterId, null, new { @class = "text-danger" })
+                </div>
+                <button type="submit" class="btn btn-info">Kaydet</button>
+            </div>
+        }
+    </div>
+    <!-- /.card -->
+</div>
+
