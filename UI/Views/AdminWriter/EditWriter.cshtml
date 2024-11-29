@@ -17,7 +17,7 @@
         {
             <div class="card-body">
                 <div class="form-group">
-                    @Html.Label("Yazar Adı")
+                    @Html.Label("Yazar Id")
                     @Html.TextBoxFor(x => x.WriterId, new { @class = "form-control"})
                 </div>
                 <div class="form-group">
@@ -55,7 +55,7 @@
                     @Html.TextBoxFor(x => x.WriterAbout, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.WriterAbout, null, new { @class = "text-danger" })
                 </div>
-                <button type="submit" class="btn btn-warning">Kaydet</button>
+                <button type="submit" class="btn btn-warning">Güncelle</button>
             </div>
         }
     </div>

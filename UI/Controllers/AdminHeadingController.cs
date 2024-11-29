@@ -51,10 +51,30 @@ namespace UI.Controllers
             return RedirectToAction("Index");
         }
 
-
-        public IActionResult ContentByHeading() //Başlıkları içeriğe göre getir
+        [HttpGet]
+        public IActionResult EditHeading(int id)
         {
-            return View();
+            List<SelectListItem> valueCategories = (from x in categoryManager.GetList()
+                                                    select new SelectListItem
+                                                    {
+                                                        Text = x.CategoryName,
+                                                        Value = x.CategoryId.ToString()
+
+                                                    }).ToList();
+
+            ViewBag.vlc = valueCategories;
+            var headingValue = headingManager.GetById(id);
+            return View(headingValue);
         }
+
+        [HttpPost]
+        public IActionResult EditHeading(Heading heading)
+        {
+            
+
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

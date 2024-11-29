@@ -1,10 +1,9 @@
-﻿@model EntityLayer.Concrete.Category
+﻿@model EntityLayer.Concrete.Heading
 @{
-    ViewData["Title"] = "EditCategory";
+    ViewData["Title"] = "EditHeading";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <br />
-
 <div class="container-fluid">
     <div class="row">
         <!-- left column -->
@@ -12,28 +11,27 @@
             <!-- jquery validation -->
             <div class="card card-warning">
                 <div class="card-header">
-                    <h3 class="card-title">Kategori Güncelle</h3>
+                    <h3 class="card-title">Başlık Güncelle</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                @using (Html.BeginForm("EditCategory", "AdminCategory", FormMethod.Post))
+                @using (Html.BeginForm("EditHeading", "AdminHeading", FormMethod.Post))
                 {
                     <div class="card-body">
                         <div class="form-group">
-                            @Html.Label("Kategori Id")
-                            @Html.TextBoxFor(x => x.CategoryId, new { @class = "form-control" })
+                            @Html.Label("Başlık Id")
+                            @Html.TextBoxFor(x => x.HeadingId, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
-                            @Html.Label("Kategori Adı")
-                            @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.CategoryName)
+                            @Html.Label("Başlık Adı")
+                            @Html.TextBoxFor(x => x.HeadingName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.HeadingName)
                         </div>
 
                         <div class="form-group">
-                            @Html.Label("Açıklama")
-                            @Html.TextAreaFor(x => x.CategoryDescription, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.CategoryDescription)
-                        </div>
+                            @Html.Label("Kategori")
+                            @Html.DropDownListFor(x => x.Category, (List<SelectListItem>)ViewBag.vlc , new { @class = "form-control" })
+                        </div> 
                         <button class="btn btn-warning">Güncelle</button>
                     </div>
                 }
