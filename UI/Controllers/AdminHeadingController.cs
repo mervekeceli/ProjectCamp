@@ -70,8 +70,15 @@ namespace UI.Controllers
         [HttpPost]
         public IActionResult EditHeading(Heading heading)
         {
-            
+            headingManager.HeadingUpdate(heading);
+            return RedirectToAction("Index");
+        }
 
+        
+        public IActionResult DeleteHeading(int id)
+        {
+            var headingValue = headingManager.GetById(id);
+            headingManager.HeadingDelete(headingValue);
             return RedirectToAction("Index");
         }
 

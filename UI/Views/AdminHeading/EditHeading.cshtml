@@ -27,6 +27,15 @@
                             @Html.TextBoxFor(x => x.HeadingName, new { @class = "form-control" })
                             @Html.ValidationMessageFor(x => x.HeadingName)
                         </div>
+                        <div class="form-group">
+                            @Html.Label("Tarih")
+                            @Html.TextBoxFor(x => x.HeadingDate, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.HeadingName)
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Yazar")
+                            @Html.TextBoxFor(x => x.WriterId, new { @class = "form-control" })
+                        </div>
 
                         <div class="form-group">
                             @Html.Label("Kategori")
