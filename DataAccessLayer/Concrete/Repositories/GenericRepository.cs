@@ -44,7 +44,7 @@ namespace DataAccessLayer.Concrete.Repositories
             return _object.ToList();
         }
 
-        public List<T> List(Expression<Func<T, bool>> filter)
+        public virtual List<T> List(Expression<Func<T, bool>> filter)
         {
             return _object.Where(filter).ToList();
         }
