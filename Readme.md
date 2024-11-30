@@ -8,3 +8,5 @@
 NOT: Writer tablosunda sonradan güncelleme yaptýktan sonra þu þekidle migration yaptýrdý:<br />
 - EntityFrameworkcore\add-migration MigName <br />
 - EntityFrameworkcore\update-databse <br />
+
+-> Partial Kullanýmý için: @await Html.PartialAsync("AboutPartial") <br />
