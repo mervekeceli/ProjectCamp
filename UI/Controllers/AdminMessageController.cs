@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UI.Controllers
@@ -9,8 +10,27 @@ namespace UI.Controllers
         MessageManager messageManager = new MessageManager(new EfMessageDal());
         public IActionResult Inbox()
         {
-            var messageList = messageManager.GetList();
+            var messageList = messageManager.GetListInbox();
             return View(messageList);
+        }
+
+        public IActionResult Sendbox()
+        {
+            var messageList = messageManager.GetListSendbox();
+            return View(messageList);
+        }
+
+
+        [HttpGet]
+        public IActionResult NewMessage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult NewMessage(Message message)
+        {
+            return View();
         }
     }
 }
