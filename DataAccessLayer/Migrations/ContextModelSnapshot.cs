@@ -48,7 +48,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("AboutId");
 
-                    b.ToTable("Abouts");
+                    b.ToTable("Abouts", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Category", b =>
@@ -72,7 +72,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Contact", b =>
@@ -100,7 +100,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("ContactId");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Contacts", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Content", b =>
@@ -133,7 +133,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("WriterId");
 
-                    b.ToTable("Contents");
+                    b.ToTable("Contents", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Heading", b =>
@@ -166,7 +166,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("WriterId");
 
-                    b.ToTable("Headings");
+                    b.ToTable("Headings", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Message", b =>
@@ -197,7 +197,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("MessageId");
 
-                    b.ToTable("Messages");
+                    b.ToTable("Messages", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Writer", b =>
@@ -241,7 +241,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("WriterId");
 
-                    b.ToTable("Writers");
+                    b.ToTable("Writers", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Content", b =>

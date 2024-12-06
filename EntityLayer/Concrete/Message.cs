@@ -24,6 +24,9 @@ namespace EntityLayer.Concrete
         [StringLength(100)]
         public string Subject { get; set; }
         public string MessageContent { get; set; }
+
+
+        [DisplayFormat(DataFormatString = "{0:dd-MMMM-yyyy}")]
         public DateTime MessageDate { get; set; }
     }
 }

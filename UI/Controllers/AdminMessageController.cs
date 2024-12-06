@@ -22,6 +22,13 @@ namespace UI.Controllers
 
 
         [HttpGet]
+        public IActionResult GetInboxMessageDetails(int id)
+        {
+            var values = messageManager.GetById(id);
+            return View(values);
+        }
+
+        [HttpGet]
         public IActionResult NewMessage()
         {
             return View();
