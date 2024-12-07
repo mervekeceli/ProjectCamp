@@ -16,7 +16,7 @@ namespace BusinessLayer.ValidationRules_FluentValidation_
             RuleFor(x => x.Subject).NotEmpty().WithMessage("Konuyu boş geçemezsiniz!");
             RuleFor(x => x.MessageContent).NotEmpty().WithMessage("Mesaj içeriğini boş geçemezsiniz!");
             RuleFor(x => x.Subject).MinimumLength(3).WithMessage("Lütfen en az 3 karakter girişi yapın!");
-            RuleFor(x => x.Subject).MaximumLength(3).WithMessage("Lütfen 50 karekterden fazla değer girişi yapmayın!");
+            RuleFor(x => x.Subject).MaximumLength(50).WithMessage("Lütfen 50 karekterden fazla değer girişi yapmayın!");
             RuleFor(x => x.SenderMail).EmailAddress().WithMessage("Geçerli bir e-posta adresi girin!");
         }
     }

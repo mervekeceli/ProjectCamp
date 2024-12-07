@@ -29,6 +29,39 @@
                     <!-- /.card-tools -->
                 </div>
                 <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <div class="table-responsive mailbox-messages">
+                        <table class="table table-hover table-striped">
+                            <tbody>
+                                @foreach (var contact in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="icheck-primary">
+                                                <input type="checkbox" value="" id="check2">
+                                                <label for="check2"></label>
+                                            </div>
+                                        </td>
+                                        <td class="mailbox-star"><a href="/AdminMessage/GetInboxMessageDetails/@contact.ContactId"><i class="fas fa-star-o text-warning"></i></a></td>
+                                        <td class="mailbox-name"><a href="/AdminMessage/GetInboxMessageDetails/@contact.ContactId">@contact.UserEmail</a></td>
+                                        <td class="mailbox-subject">
+                                            <b>@contact.Subject</b> -
+                                            @{
+                                                int caracterLength = Math.Min(100, contact.Message.Length);
+                                                @contact.Message.Substring(0, caracterLength)
+                                                ;
+                                            }...
+                                        </td>
+                                        <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
+                                        <td class="mailbox-date">@(((DateTime)contact.ContactDate).ToString("dd-MMMM-yyyy"))</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <!-- /.table -->
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
                 <!-- /.card-body -->
                 <div class="card-footer p-0">
                     <div class="mailbox-controls">
