@@ -352,6 +352,15 @@
     <None Include="wwwroot\AdminLTE-3.1.0\docs\_includes\sidebar.html" />
     <None Include="wwwroot\AdminLTE-3.1.0\docs\_layouts\default.html" />
     <None Include="wwwroot\AdminLTE-3.1.0\docs\_layouts\page.html" />
+    <None Include="wwwroot\AdminLTE-3.1.0\login-form-19\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.1.0\login-form-19\css\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.1.0\login-form-19\css\bootstrap\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.1.0\login-form-19\css\bootstrap\mixins\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.1.0\login-form-19\fonts\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.1.0\login-form-19\images\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.1.0\login-form-19\js\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.1.0\login-form-19\scss\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.1.0\login-form-19\scss\bootstrap\.DS_Store" />
     <None Include="wwwroot\AdminLTE-3.1.0\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
     <None Include="wwwroot\AdminLTE-3.1.0\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css.map" />
     <None Include="wwwroot\AdminLTE-3.1.0\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css" />
