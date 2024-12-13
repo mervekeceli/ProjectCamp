@@ -1,0 +1,86 @@
+﻿@using EntityLayer.Concrete
+@model List<ImageFile>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | Gallery</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/AdminLTE-3.1.0/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ekko Lightbox -->
+    <link rel="stylesheet" href="~/AdminLTE-3.1.0/plugins/ekko-lightbox/ekko-lightbox.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/AdminLTE-3.1.0/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition sidebar-mini">
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h4 class="card-title">Ekko Lightbox</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                @foreach (var item in Model)
+                                {
+                                    <div class="col-sm-2">
+                                        <a href="@item.ImagePath" data-toggle="lightbox" data-title="@item.ImageName" data-gallery="gallery">
+                                            <img src="@item.ImagePath" class="img-fluid mb-2" alt="white sample" />
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+    <script src="~/AdminLTE-3.1.0/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/AdminLTE-3.1.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Ekko Lightbox -->
+    <script src="~/AdminLTE-3.1.0/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/AdminLTE-3.1.0/dist/js/adminlte.min.js"></script>
+    <!-- Filterizr-->
+    <script src="~/AdminLTE-3.1.0/plugins/filterizr/jquery.filterizr.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/AdminLTE-3.1.0/dist/js/demo.js"></script>
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+          $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+            event.preventDefault();
+            $(this).ekkoLightbox({
+              alwaysShowClose: true
+            });
+          });
+
+          $('.filter-container').filterizr({gutterPixels: 3});
+          $('.btn[data-filter]').on('click', function() {
+            $('.btn[data-filter]').removeClass('active');
+            $(this).addClass('active');
+          });
+        })
+    </script>
+</body>
+</html>
+
+
