@@ -16,6 +16,13 @@ namespace UI.Controllers
         [Authorize]
         public IActionResult Index()
         {
+            string adminUserName = HttpContext.Session.GetString("AdminUserName");
+
+            if (string.IsNullOrEmpty(adminUserName))
+            {
+                //Eğer session boşsa, login sayfasına yönlendirir.
+                return RedirectToAction("Login", "AdminLogin");
+            }
             var categoryValues = categoryManager.GetList();
             return View(categoryValues);
         }

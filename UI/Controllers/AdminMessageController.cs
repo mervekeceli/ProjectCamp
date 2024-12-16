@@ -3,6 +3,7 @@ using BusinessLayer.ValidationRules_FluentValidation_;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UI.Controllers
@@ -11,6 +12,8 @@ namespace UI.Controllers
     {
         MessageManager messageManager = new MessageManager(new EfMessageDal());
         MessageValidator messageValidator = new MessageValidator();
+
+        [Authorize]
         public IActionResult Inbox()
         {
             var messageList = messageManager.GetListInbox();

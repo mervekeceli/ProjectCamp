@@ -1,4 +1,5 @@
 using DataAccessLayer.Concrete;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -15,6 +16,26 @@ internal class Program
         builder.Services.AddDbContext<Context>(options =>
             options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=ProjectCamp;Trusted_Connection=True;MultipleActiveResultSets=true"));
 
+        // Cookie Authentication'ý yapýlandýr
+        builder.Services.AddAuthentication("Cookies")
+        .AddCookie(options =>
+        {
+            options.Cookie.Name = "Cookies"; // Cookie name
+            options.LoginPath = "/Login/AdminLogin";  // Redirect path for unauthorized users
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Session expiry
+        });
+
+        // Add session management
+        builder.Services.AddSession(options =>
+        {
+            options.IdleTimeout = TimeSpan.FromMinutes(30); // Session timeout
+            options.Cookie.HttpOnly = true;
+            options.Cookie.IsEssential = true;
+        });
+
+        builder.Services.AddRazorPages();
+        builder.Services.AddSession(); // Session için gerekli yapýlandýrmayý ekle
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -29,6 +50,9 @@ internal class Program
         app.UseStaticFiles();
 
         app.UseRouting();
+
+        app.UseAuthentication();
+        app.UseSession();
 
         app.UseAuthorization();
 

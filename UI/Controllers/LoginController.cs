@@ -1,6 +1,9 @@
 ﻿using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace UI.Controllers
 {
@@ -13,20 +16,31 @@ namespace UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdminLogin(Admin admin)
+        public async Task<IActionResult> AdminLogin(Admin admin)
         {
-            Context context = new Context();
-            var adminUserInfo = context.Admins.FirstOrDefault(x => x.AdminUserName == admin.AdminUserName &&
-            x.AdminPassword == admin.AdminPassword);
+            var context = new Context();
+            var adminUserInfo = context.Admins.FirstOrDefault(x => x.AdminUserName == admin.AdminUserName && x.AdminPassword == admin.AdminPassword);
 
             if (adminUserInfo != null)
             {
-                //Yönlendirme işlemleri
-                return RedirectToAction("Index", "AdminCategory");
+                // Kullanıcı bilgilerini session'a kaydedin
+                HttpContext.Session.SetString("AdminUserName", admin.AdminUserName);  // Admin adı
+                HttpContext.Session.SetInt32("AdminId", adminUserInfo.AdminId);  // Admin ID
+
+                // Cookie Authentication ile oturum açma
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, admin.AdminUserName)
+                };
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+
+                return RedirectToAction("Index", "AdminCategory");  // Giriş başarılıysa admin sayfasına yönlendir
             }
             else
             {
-                return RedirectToAction("Index");
+                // Giriş başarısızsa login sayfasına yönlendir
+                return RedirectToAction("Login", "Admin");
             }
         }
     }
