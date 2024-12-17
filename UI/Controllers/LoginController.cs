@@ -1,4 +1,6 @@
-﻿using DataAccessLayer.Concrete;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -9,6 +11,8 @@ namespace UI.Controllers
 {
     public class LoginController : Controller
     {
+        AdminManager adminManager = new AdminManager(new EfAdminDal());
+
         [HttpGet]
         public IActionResult AdminLogin()
         {
@@ -18,8 +22,7 @@ namespace UI.Controllers
         [HttpPost]
         public async Task<IActionResult> AdminLogin(Admin admin)
         {
-            var context = new Context();
-            var adminUserInfo = context.Admins.FirstOrDefault(x => x.AdminUserName == admin.AdminUserName && x.AdminPassword == admin.AdminPassword);
+            var adminUserInfo = adminManager.Authenticate(admin.AdminUserName, admin.AdminPassword);
 
             if (adminUserInfo != null)
             {
