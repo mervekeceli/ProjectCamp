@@ -12,7 +12,7 @@ namespace DataAccessLayer.Concrete.Repositories
 {
     public class HeadingRepository : IHeadingDal
     {
-        Context c = new Context();
+        Context context = new Context();
         DbSet<Heading> _object;
 
         public void Delete(Heading item)
@@ -42,7 +42,9 @@ namespace DataAccessLayer.Concrete.Repositories
 
         public void Update(Heading item)
         {
-            throw new NotImplementedException();
+            var updatedEntity = context.Entry(item);
+            updatedEntity.State = EntityState.Modified;
+            context.SaveChanges();
         }
     }
 }
