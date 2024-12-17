@@ -67,14 +67,18 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                              with font-awesome or any other icon font library -->
-                        <li class="nav-item">
-                            <a href="/AdminCategory/Index/" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Kategoriler
-                                </p>
-                            </a>
-                        </li>
+                        @if (User.IsInRole("A"))
+                        {
+                            <li class="nav-item">
+                                <a href="/AdminCategory/Index/" class="nav-link">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        Kategoriler
+                                    </p>
+                                </a>
+                            </li>
+                        }
+
                         <li class="nav-item">
                             <a href="/AdminHeading/Index/" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
@@ -130,18 +134,10 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/AdminContact/Index/" class="nav-link">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
                                     İletişim & Mesajlar
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>
-                                    Yazılar
                                 </p>
                             </a>
                         </li>
@@ -156,7 +152,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/gallery.html" class="nav-link">
+                            <a href="/AdminGallery/Index" class="nav-link">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
                                     Galeri
@@ -222,5 +218,5 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="~/AdminLTE-3.1.0/dist/js/pages/dashboard3.js"></script>
     <script src="~/AdminLTE-3.0.4/plugins/summernote/summernote-bs4.min.js"></script>
-    </body>
+</body>
 </html>
