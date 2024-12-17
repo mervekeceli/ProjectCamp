@@ -1,7 +1,10 @@
 using DataAccessLayer.Concrete;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
+using UI.Roles;
 
 internal class Program
 {
@@ -16,7 +19,8 @@ internal class Program
         builder.Services.AddDbContext<Context>(options =>
             options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=ProjectCamp;Trusted_Connection=True;MultipleActiveResultSets=true"));
 
-        // Cookie Authentication'ý yapýlandýr
+
+        // Authentication: Cookie ile kimlik doðrulama
         builder.Services.AddAuthentication("Cookies")
         .AddCookie(options =>
         {
@@ -25,16 +29,13 @@ internal class Program
             options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Session expiry
         });
 
-        // Add session management
-        builder.Services.AddSession(options =>
+        // Authorization yapýlandýrmasý
+        builder.Services.AddAuthorization(options =>
         {
-            options.IdleTimeout = TimeSpan.FromMinutes(30); // Session timeout
-            options.Cookie.HttpOnly = true;
-            options.Cookie.IsEssential = true;
+            options.AddPolicy("AdminOnly", policy => policy.RequireRole("A"));
         });
 
         builder.Services.AddRazorPages();
-        builder.Services.AddSession(); // Session için gerekli yapýlandýrmayý ekle
 
         var app = builder.Build();
 
@@ -51,10 +52,8 @@ internal class Program
 
         app.UseRouting();
 
-        app.UseAuthentication();
-        app.UseSession();
-
-        app.UseAuthorization();
+        app.UseAuthentication(); //Kimlik Doðrulama
+        app.UseAuthorization();   // Yetkilendirme
 
         app.MapControllerRoute(
             name: "default",

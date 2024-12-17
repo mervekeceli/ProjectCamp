@@ -10,3 +10,16 @@ NOT: Writer tablosunda sonradan güncelleme yaptýktan sonra þu þekidle migration 
 - EntityFrameworkcore\update-databse <br />
 
 -> Partial Kullanýmý için: @await Html.PartialAsync("AboutPartial") <br />
+
+<hr />
+<br /> <br />
+
+-> <h5>Oturum Yönetimi</h5> <br />
+<hr />
+
+Bu yaklaþýmda: <br />
+
+- Session kullanmýyorsunuz, bunun yerine Claims ile kimlik doðrulama yapýlýyor. <br />
+- Authorization attribute'u ([Authorize]) ile rol kontrolü yaparak güvenli bir þekilde kullanýcýnýn yetkilerini kontrol ediyorsunuz. <br />
+- Çýkýþ iþlemi için SignOutAsync kullanarak güvenli bir þekilde kullanýcýyý oturumdan çýkarýyorsunuz. <br />
+- Bu yöntemle uygulamanýz daha güvenli ve yönetimi kolay hale gelir. <br  />

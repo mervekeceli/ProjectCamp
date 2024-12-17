@@ -23,17 +23,18 @@ namespace UI.Controllers
 
             if (adminUserInfo != null)
             {
-                // Kullanıcı bilgilerini session'a kaydedin
-                HttpContext.Session.SetString("AdminUserName", admin.AdminUserName);  // Admin adı
-                HttpContext.Session.SetInt32("AdminId", adminUserInfo.AdminId);  // Admin ID
-
                 // Cookie Authentication ile oturum açma
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, admin.AdminUserName)
+                    new Claim(ClaimTypes.Name, admin.AdminUserName),
+                    new Claim(ClaimTypes.Role, adminUserInfo.AdminRole)
+
                 };
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+                // Cookie Authentication ile oturum açma
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
 
                 return RedirectToAction("Index", "AdminCategory");  // Giriş başarılıysa admin sayfasına yönlendir
             }

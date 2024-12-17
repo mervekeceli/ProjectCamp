@@ -13,11 +13,12 @@ namespace UI.Controllers
     {
         CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
 
-        [Authorize]
+
+        [Authorize(Roles = "A")]
         public IActionResult Index()
         {
-            string adminUserName = HttpContext.Session.GetString("AdminUserName");
-
+            string adminUserName = User.Identity.Name; //Giriş yapan kullanıcının adını Claims'den alır.
+            
             if (string.IsNullOrEmpty(adminUserName))
             {
                 //Eğer session boşsa, login sayfasına yönlendirir.
