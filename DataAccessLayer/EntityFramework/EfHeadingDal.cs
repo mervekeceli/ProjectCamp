@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,6 +25,11 @@ namespace DataAccessLayer.EntityFramework
         public override List<Heading> List()
         {
             return _object.Include(x=>x.Writer).Include(y=>y.Category).ToList();
+        }
+
+        public override List<Heading> List(Expression<Func<Heading, bool>> filter)
+        {
+            return _object.Include(x=>x.Writer).Include(x=>x.Category).Where(filter).ToList();
         }
     }
 }
