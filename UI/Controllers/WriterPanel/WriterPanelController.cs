@@ -70,5 +70,13 @@ namespace UI.Controllers.WriterPanel
             headingManager.HeadingUpdate(heading);
             return RedirectToAction("MyHeading");
         }
+
+        public IActionResult DeleteHeading(int id)
+        {
+            var headingValue = headingManager.GetById(id);
+            headingValue.HeadingStatus = false;
+            headingManager.HeadingDelete(headingValue);
+            return RedirectToAction("MyHeading");
+        }
     }
 }
