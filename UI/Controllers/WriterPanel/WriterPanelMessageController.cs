@@ -1,6 +1,8 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules_FluentValidation_;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UI.Controllers.WriterPanel
@@ -24,6 +26,46 @@ namespace UI.Controllers.WriterPanel
         public PartialViewResult MessageListMenu()
         {
             return PartialView();
+        }
+
+        public IActionResult GetInboxMessageDetails(int id)
+        {
+            var values = messageManager.GetById(id);
+            return View(values);
+        }
+
+        public IActionResult GetSendboxMessageDetails(int id)
+        {
+            var values = messageManager.GetById(id);
+            return View(values);
+        }
+
+        [HttpGet]
+        public IActionResult NewMessage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult NewMessage(Message message)
+        {
+            ValidationResult results = messageValidator.Validate(message);
+
+            if (results.IsValid)
+            {
+                message.SenderMail = "mervekeceli@gmail.com";
+                message.MessageDate = DateTime.Parse(DateTime.Now.ToString());
+                messageManager.MessageAdd(message);
+                return RedirectToAction("Sendbox");
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
         }
     }
 }
