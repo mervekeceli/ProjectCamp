@@ -14,6 +14,12 @@ namespace DataAccessLayer.Concrete.Repositories
     {
         Context c = new Context();
         DbSet<Writer> _object;
+
+        public Writer Authenticate(string writerMail, string password)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Delete(Writer item)
         {
             throw new NotImplementedException();

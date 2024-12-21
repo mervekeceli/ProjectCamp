@@ -12,7 +12,7 @@ namespace UI.Controllers
 
         HeadingManager headingManager = new HeadingManager(new EfHeadingDal());
         CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
-        WriterManager writerManager = new WriterManager(new EFWriterDal());
+        WriterManager writerManager = new WriterManager(new EfWriterDal());
         public IActionResult Index()
         {
             var headingValues = headingManager.GetList();

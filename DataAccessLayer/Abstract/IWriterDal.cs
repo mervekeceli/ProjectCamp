@@ -9,5 +9,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface IWriterDal : IRepositoryDal<Writer>
     {
+        Writer Authenticate(string writerMail, string password);
     }
 }

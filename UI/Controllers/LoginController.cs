@@ -12,6 +12,7 @@ namespace UI.Controllers
     public class LoginController : Controller
     {
         AdminManager adminManager = new AdminManager(new EfAdminDal());
+        WriterManager writerManager = new WriterManager(new EfWriterDal());
 
         [HttpGet]
         public IActionResult AdminLogin()
@@ -45,6 +46,40 @@ namespace UI.Controllers
             {
                 // Giriş başarısızsa login sayfasına yönlendir
                 return RedirectToAction("Login", "Admin");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult WriterLogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> WriterLogin(Writer writer)
+        {
+            var writerUserInfo = writerManager.Authenticate(writer.WriterEmail, writer.WriterPassword);
+
+            if (writerUserInfo != null)
+            {
+                // Cookie Authentication ile oturum açma
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Email, writer.WriterEmail)
+
+                };
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+                // Cookie Authentication ile oturum açma
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
+
+                return RedirectToAction("MyContent", "WriterPanelContent");  // Giriş başarılıysa admin sayfasına yönlendir
+            }
+            else
+            {
+                // Giriş başarısızsa login sayfasına yönlendir
+                return RedirectToAction("WriterLogin");
             }
         }
     }

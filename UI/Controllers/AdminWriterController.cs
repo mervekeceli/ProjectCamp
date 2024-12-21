@@ -9,7 +9,7 @@ namespace UI.Controllers
 {
     public class AdminWriterController : Controller
     {
-        WriterManager writerManager = new WriterManager(new EFWriterDal());
+        WriterManager writerManager = new WriterManager(new EfWriterDal());
         WriterValidator writerValidator = new WriterValidator();
         public IActionResult Index()
         {
