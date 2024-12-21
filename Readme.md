@@ -23,3 +23,8 @@ Bu yaklaþýmda: <br />
 - Authorization attribute'u ([Authorize]) ile rol kontrolü yaparak güvenli bir þekilde kullanýcýnýn yetkilerini kontrol ediyorsunuz. <br />
 - Çýkýþ iþlemi için SignOutAsync kullanarak güvenli bir þekilde kullanýcýyý oturumdan çýkarýyorsunuz. <br />
 - Bu yöntemle uygulamanýz daha güvenli ve yönetimi kolay hale gelir. <br  />
+
+<hr />
+Session Kullanýmýyla Karþýlaþtýrma<br>
+Session: Oturumda saklanan veriler sunucu tarafýnda tutulur. Kullanýcý sayfalar arasýnda gezinirken oturum bilgileri kaybolmaz.<br>
+Claims: Kullanýcý bilgileri genellikle kimlik doðrulama sýrasýnda saklanýr ve JWT Token veya ASP.NET Core Identity gibi sistemlerle birlikte kullanýlýr. Bu bilgiler istemci tarafýnda (browser) taþýnýr (cookie veya token þeklinde).<br>

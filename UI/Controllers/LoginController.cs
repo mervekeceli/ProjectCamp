@@ -31,7 +31,8 @@ namespace UI.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, admin.AdminUserName),
-                    new Claim(ClaimTypes.Role, adminUserInfo.AdminRole)
+                    new Claim(ClaimTypes.Role, adminUserInfo.AdminRole),
+                    new Claim(ClaimTypes.NameIdentifier, admin.AdminId.ToString())
 
                 };
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -65,8 +66,8 @@ namespace UI.Controllers
                 // Cookie Authentication ile oturum açma
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Email, writer.WriterEmail)
-
+                    new Claim(ClaimTypes.Email, writer.WriterEmail),
+                    new Claim(ClaimTypes.NameIdentifier, writer.WriterId.ToString())
                 };
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
