@@ -27,7 +27,7 @@ internal class Program
         .AddCookie(options =>
         {
             options.Cookie.Name = "Cookies"; // Cookie name
-            options.LoginPath = "/Login/AdminLogin";  // Redirect path for unauthorized users
+            options.LoginPath = "/Login/WriterLogin";  // Redirect path for unauthorized users
             options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Session expiry
         });
 
