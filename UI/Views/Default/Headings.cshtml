@@ -1,5 +1,6 @@
-﻿@using EntityLayer.Concrete
-@model List<Heading>
+﻿@using UI.Controllers
+@model DefaultViewModel
+
 @{
     Layout = null;
 }
@@ -69,15 +70,18 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                              with font-awesome or any other icon font library -->
-                        @foreach (var heading in Model)
+                        @if (Model.Headings is not null)
                         {
-                            <li class="nav-item">
-                                <a href="/WriterPanel/MyHeading/" class="nav-link">
-                                    <p>
-                                        @heading.HeadingName
-                                    </p>
-                                </a>
-                            </li>
+                            @foreach (var heading in Model.Headings)
+                            {
+                                <li class="nav-item">
+                                    <a href="/WriterPanel/MyHeading/" class="nav-link">
+                                        <p>
+                                            @heading.HeadingName
+                                        </p>
+                                    </a>
+                                </li>
+                            }
                         }
                     </ul>
                 </nav>
@@ -90,8 +94,9 @@
         <div class="content-wrapper">
 
             <!-- Main content -->
+
             <div class="content">
-                 @await Html.PartialAsync("Index") 
+                @await Html.PartialAsync("Index")
             </div>
             <!-- /.content -->
         </div>
