@@ -9,7 +9,6 @@ using System.Security.Claims;
 
 namespace UI.Controllers.WriterPanel
 {
-    [Authorize]
     public class WriterPanelController : Controller
     {
         HeadingManager headingManager = new HeadingManager(new EfHeadingDal());
@@ -56,9 +55,12 @@ namespace UI.Controllers.WriterPanel
         [HttpPost]
         public IActionResult NewHeading(Heading heading)
         {
+            string writerMailInfo = User.FindFirstValue(ClaimTypes.Email);
+            var writerIdInfo = context.Writers.Where(x => x.WriterEmail == writerMailInfo).Select(x => x.WriterId).FirstOrDefault();
             heading.HeadingDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            heading.WriterId = 1;
+            heading.WriterId = writerIdInfo;
             heading.HeadingStatus = true;
+
             headingManager.HeadingAdd(heading);
             return RedirectToAction("MyHeading");
         }
