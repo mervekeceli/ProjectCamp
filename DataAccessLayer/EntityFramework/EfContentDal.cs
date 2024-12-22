@@ -22,6 +22,12 @@ namespace DataAccessLayer.EntityFramework
         {
             _object = context.Set<Content>();
         }
+
+        public override List<Content> List()
+        {
+            return _object.Include(x => x.Writer).Include(y => y.Heading).ToList();
+        }
+
         public override List<Content> List(Expression<Func<Content, bool>> filter)
         {
             return _object.Where(filter).Include(x=>x.Writer).Include(y=>y.Heading).ToList();
