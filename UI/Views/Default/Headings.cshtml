@@ -1,5 +1,5 @@
 ﻿@using EntityLayer.Concrete
-@model Tuple<List<Heading>, List<Content>>
+@model List<Heading>
 @{
     Layout = null;
 }
@@ -69,7 +69,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                              with font-awesome or any other icon font library -->
-                        @foreach (var heading in Model.Item1)
+                        @foreach (var heading in Model)
                         {
                             <li class="nav-item">
                                 <a href="/WriterPanel/MyHeading/" class="nav-link">
@@ -91,7 +91,7 @@
 
             <!-- Main content -->
             <div class="content">
-                @await Html.PartialAsync("Index")
+                 @await Html.PartialAsync("Index") 
             </div>
             <!-- /.content -->
         </div>
