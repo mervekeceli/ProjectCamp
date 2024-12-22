@@ -11,7 +11,7 @@
                 <!-- timeline time label -->
                 <div class="time-label">
                     <span class="bg-gradient-purple">
-                        @(((DateTime)item.ContentDate).ToString("dd-MMMM-yyyy"))
+                        @(((DateTime)item.ContentDate).ToString("dd-MMMM-yyyy")) - @item.Writer.WriterName @item.Writer.WriterSurName
                     </span>
                 </div>
                 <!-- /.timeline-label -->

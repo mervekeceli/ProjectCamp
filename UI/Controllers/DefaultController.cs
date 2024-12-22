@@ -23,13 +23,25 @@ namespace UI.Controllers
             return PartialView(defaultList);
         }
 
-        public IActionResult Headings()
+        public IActionResult Headings(int id = 0)
         {
-            var defaultList = new DefaultViewModel
+            var defaultList = new DefaultViewModel();
+            if (id == 0)
             {
-                Headings = headingManager.GetList() ?? new List<Heading>(),
-                Contents = contentManager.GetList() ?? new List<Content>()
-            };
+                defaultList = new DefaultViewModel
+                {
+                    Headings = headingManager.GetList() ?? new List<Heading>(),
+                    Contents = contentManager.GetList() ?? new List<Content>()
+                };
+            }
+            else
+            {
+                defaultList = new DefaultViewModel
+                {
+                    Headings = headingManager.GetList() ?? new List<Heading>(),
+                    Contents = contentManager.GetListByHeadingId(id) ?? new List<Content>()
+                };
+            }
             return View(defaultList);
         }
     }

@@ -96,5 +96,11 @@ namespace UI.Controllers.WriterPanel
             headingManager.HeadingDelete(headingValue);
             return RedirectToAction("MyHeading");
         }
+
+        public IActionResult AllHeading()
+        {
+            var allHeadings = headingManager.GetList();
+            return View(allHeadings);
+        }
     }
 }
