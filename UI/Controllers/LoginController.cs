@@ -4,11 +4,13 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace UI.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         AdminManager adminManager = new AdminManager(new EfAdminDal());
@@ -21,6 +23,7 @@ namespace UI.Controllers
         }
 
         [HttpPost]
+        
         public async Task<IActionResult> AdminLogin(Admin admin)
         {
             var adminUserInfo = adminManager.Authenticate(admin.AdminUserName, admin.AdminPassword);

@@ -1,8 +1,11 @@
 using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 
 internal class Program
@@ -32,7 +35,15 @@ internal class Program
         builder.Services.AddAuthorization(options =>
         {
             options.AddPolicy("AdminOnly", policy => policy.RequireRole("A"));
+
+            // Varsayýlan olarak kimlik doðrulamasý yapýlmasý gerektiðini belirtiyoruz
+            options.FallbackPolicy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()  // Varsayýlan olarak tüm uygulama kimlik doðrulamasý gerektirir
+                .Build();
         });
+
+
+        
 
         builder.Services.AddRazorPages();
 
@@ -57,6 +68,8 @@ internal class Program
         app.MapControllerRoute(
             name: "default",
             pattern: "{controller=Home}/{action=Index}/{id?}");
+
+        
 
         app.Run();
     }

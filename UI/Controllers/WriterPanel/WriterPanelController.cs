@@ -1,24 +1,40 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Claims;
 
 namespace UI.Controllers.WriterPanel
 {
+    [Authorize]
     public class WriterPanelController : Controller
     {
         HeadingManager headingManager = new HeadingManager(new EfHeadingDal());
         CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+
+        Context context = new Context();
         public IActionResult WriterProfile()
         {
             return View();
         }
 
-        public IActionResult MyHeading(int id)
+        public IActionResult MyHeading(string email)
         {
-            id = 1;
-            var values = headingManager.GetListByWriter(id);
+            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            email = User.FindFirstValue(ClaimTypes.Email);
+
+            // Eğer claim değeri yoksa, boş dönecektir
+            if (string.IsNullOrEmpty(email))
+            {
+                // Eğer claim bilgisi yoksa, kullanıcıyı giriş sayfasına yönlendirebilirsiniz
+                return RedirectToAction("Login", "Account");
+            }
+
+            var writerIdInfo = context.Writers.Where(x => x.WriterEmail == email).Select(x => x.WriterId).FirstOrDefault();
+            var values = headingManager.GetListByWriter(writerIdInfo);
             return View(values);
         }
 
