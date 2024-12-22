@@ -86,5 +86,18 @@ namespace UI.Controllers
                 return RedirectToAction("WriterLogin");
             }
         }
+
+        public async Task<IActionResult> Logout()
+        {
+            // ClaimsIdentity oluşturun ve kullanıcıyı çıkışa yönlendirin
+            var identity = new ClaimsIdentity();
+            var principal = new ClaimsPrincipal(identity);
+
+            // Kullanıcı kimliğini temizle
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            // Login sayfasına yönlendirme
+            return RedirectToAction("Headings", "Default");
+        }
     }
 }

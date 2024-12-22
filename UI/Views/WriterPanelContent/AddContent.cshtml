@@ -1,0 +1,33 @@
+﻿@model EntityLayer.Concrete.Content
+@{
+    ViewData["Title"] = "AddContent";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<br />
+
+<div class="col-md-12 col-lg-12 col-sm-12">
+    <!-- general form elements -->
+    <div class="card card-info">
+        <div class="card-header">
+            <h3 class="card-title">İçerik Girişi</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        @using (Html.BeginForm("AddContent", "WriterPanelContent", FormMethod.Post))
+        {
+            <div class="card-body">
+                <input type="hidden" name="HeadingId" value="@ViewBag.id"/>
+                <div class="form-group">
+                    @Html.Label("İçerik Adı")
+                    @Html.TextAreaFor(x => x.ContentValue, 10, 1000, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ContentValue, null, new { @class = "text-danger" })
+                </div>
+
+                <button type="submit" class="btn btn-info">Kaydet</button>
+            </div>
+        }
+    </div>
+    <!-- /.card -->
+</div>
+

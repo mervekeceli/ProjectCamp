@@ -30,8 +30,9 @@ namespace UI.Controllers.WriterPanel
         }
 
         [HttpGet]
-        public IActionResult AddContent()
+        public IActionResult AddContent(int id)
         {
+            ViewBag.id = id;
             return View();
         }
 
@@ -47,6 +48,11 @@ namespace UI.Controllers.WriterPanel
 
             contentManager.ContentAdd(content);
             return RedirectToAction("MyContent");
+        }
+
+        public IActionResult ToDoList()
+        {
+            return View();
         }
     }
 }
