@@ -1,0 +1,36 @@
+﻿@using EntityLayer.Concrete
+@model Tuple<List<Heading>, List<Content>>
+
+
+<div class="tab-pane" id="timeline">
+    <!-- The timeline -->
+    <div class="timeline timeline-inverse">
+        @foreach (var item in Model.Item2)
+        {
+            <!-- timeline time label -->
+            <div class="time-label">
+                <span class="bg-gradient-purple">
+                    @(((DateTime)item.ContentDate).ToString("dd-MMMM-yyyy"))
+                </span>
+            </div>
+            <!-- /.timeline-label -->
+            <!-- timeline item -->
+            <div>
+                <i class="fas fa-comments bg-warning"></i>
+
+                <div class="timeline-item">
+
+                    <h3 class="timeline-header"><a href="#">@item.Heading.HeadingName</a></h3>
+
+                    <div class="timeline-body">
+                        @item.ContentValue
+                    </div>
+                </div>
+            </div>
+        }
+        <!-- END timeline item -->
+        <div>
+            <i class="far fa-clock bg-gray"></i>
+        </div>
+    </div>
+</div>
