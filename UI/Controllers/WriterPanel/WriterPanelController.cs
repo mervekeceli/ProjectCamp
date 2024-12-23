@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
+using X.PagedList.Extensions;
 
 namespace UI.Controllers.WriterPanel
 {
@@ -97,9 +98,9 @@ namespace UI.Controllers.WriterPanel
             return RedirectToAction("MyHeading");
         }
 
-        public IActionResult AllHeading()
+        public IActionResult AllHeading(int page = 1)
         {
-            var allHeadings = headingManager.GetList();
+            var allHeadings = headingManager.GetList().ToPagedList(page, 5);
             return View(allHeadings);
         }
     }

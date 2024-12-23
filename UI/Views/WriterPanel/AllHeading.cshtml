@@ -1,5 +1,9 @@
-﻿@using EntityLayer.Concrete
-@model List<Heading>
+﻿@using X.PagedList
+@using X.PagedList.Mvc
+@using X.PagedList.Mvc.Core
+
+@using EntityLayer.Concrete
+@model X.PagedList.IPagedList<Heading>
 @{
     ViewData["Title"] = "AllHeading";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
@@ -97,7 +101,7 @@
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 Bu Başlığa Yaz
-                            </a> 
+                            </a>
 
                         </td>
                     </tr>
@@ -106,5 +110,14 @@
     </div>
     <!-- /.card-body -->
 </div>
-
-
+<!-- Pagination -->
+<div class="align-content-center">
+    <div class="pagination-container">
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("AllHeading", new { page }), new PagedListRenderOptions
+   {
+       LiElementClasses = new List<string> { "page-link" },
+       LinkToPreviousPageFormat = "<<",
+       LinkToNextPageFormat = ">>"
+   })
+    </div>
+</div>
