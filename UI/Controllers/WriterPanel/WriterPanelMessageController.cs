@@ -1,9 +1,12 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules_FluentValidation_;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using System.Web.Helpers;
 
 namespace UI.Controllers.WriterPanel
 {
@@ -11,15 +14,20 @@ namespace UI.Controllers.WriterPanel
     {
         MessageManager messageManager = new MessageManager(new EfMessageDal());
         MessageValidator messageValidator = new MessageValidator();
+
+        Context context = new Context();
         public IActionResult Inbox()
         {
-            var messageList = messageManager.GetListInbox();
+            string mail = User.FindFirstValue(ClaimTypes.Email);
+
+            var messageList = messageManager.GetListInbox(mail);
             return View(messageList);
         }
 
         public IActionResult Sendbox()
         {
-            var messageList = messageManager.GetListSendbox();
+            string mail = User.FindFirstValue(ClaimTypes.Email);
+            var messageList = messageManager.GetListSendbox(mail);
             return View(messageList);
         }
 
@@ -53,7 +61,7 @@ namespace UI.Controllers.WriterPanel
 
             if (results.IsValid)
             {
-                message.SenderMail = "mervekeceli@gmail.com";
+                message.SenderMail = User.FindFirstValue(ClaimTypes.Email);
                 message.MessageDate = DateTime.Parse(DateTime.Now.ToString());
                 messageManager.MessageAdd(message);
                 return RedirectToAction("Sendbox");

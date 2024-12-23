@@ -114,10 +114,10 @@
 <div class="align-content-center">
     <div class="pagination-container">
         @Html.PagedListPager((IPagedList)Model, page => Url.Action("AllHeading", new { page }), new PagedListRenderOptions
-   {
-       LiElementClasses = new List<string> { "page-link" },
-       LinkToPreviousPageFormat = "<<",
-       LinkToNextPageFormat = ">>"
-   })
+        {
+           LiElementClasses = new List<string> { "page-link" },
+           LinkToPreviousPageFormat = "<<",
+           LinkToNextPageFormat = ">>"
+        })
     </div>
 </div>

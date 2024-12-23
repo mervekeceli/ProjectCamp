@@ -16,13 +16,15 @@ namespace UI.Controllers
         [Authorize]
         public IActionResult Inbox()
         {
-            var messageList = messageManager.GetListInbox();
+            string mail = "";
+            var messageList = messageManager.GetListInbox(mail);
             return View(messageList);
         }
 
         public IActionResult Sendbox()
         {
-            var messageList = messageManager.GetListSendbox();
+            string mail = "";
+            var messageList = messageManager.GetListSendbox(mail);
             return View(messageList);
         }
 
