@@ -74,14 +74,14 @@ namespace UI.Controllers
 
             if (writerUserInfo != null)
             {
-                // ReCAPTCHA doğrulamasını yap
-                var isCaptchaValid = await _recaptchaService.ValidateRecaptchaAsync(recaptchaResponse);
+                //// ReCAPTCHA doğrulamasını yap
+                //var isCaptchaValid = await _recaptchaService.ValidateRecaptchaAsync(recaptchaResponse);
 
-                if (!isCaptchaValid)
-                {
-                    ModelState.AddModelError(string.Empty, "ReCAPTCHA doğrulaması başarısız oldu.");
-                    return View();
-                }
+                //if (!isCaptchaValid)
+                //{
+                //    ModelState.AddModelError(string.Empty, "ReCAPTCHA doğrulaması başarısız oldu.");
+                //    return View();
+                //}
 
                 // Cookie Authentication ile oturum açma
                 var claims = new List<Claim>

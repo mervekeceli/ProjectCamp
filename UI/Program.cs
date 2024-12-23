@@ -45,9 +45,9 @@ internal class Program
         });
 
         // ReCAPTCHA servisinin DI konteynerine eklenmesi
-        var recaptchaSecretKey = builder.Configuration["Recaptcha:SecretKey"];
-        builder.Services.AddScoped<ReCAPTCHAaService>(serviceProvider =>
-            new ReCAPTCHAaService(recaptchaSecretKey));
+        //var recaptchaSecretKey = builder.Configuration["Recaptcha:SecretKey"];
+        //builder.Services.AddScoped<ReCAPTCHAaService>(serviceProvider =>
+        //    new ReCAPTCHAaService(recaptchaSecretKey));
 
         builder.Services.AddRazorPages();
 
