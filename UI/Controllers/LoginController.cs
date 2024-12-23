@@ -7,14 +7,22 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using UI.reCAPTCHA;
 
 namespace UI.Controllers
 {
     [AllowAnonymous]
     public class LoginController : Controller
     {
+        private readonly ReCAPTCHAaService _recaptchaService;
+
         AdminManager adminManager = new AdminManager(new EfAdminDal());
         WriterManager writerManager = new WriterManager(new EfWriterDal());
+
+        public LoginController(ReCAPTCHAaService recaptchaService)
+        {
+            _recaptchaService = recaptchaService;
+        }
 
         [HttpGet]
         public IActionResult AdminLogin()
@@ -60,12 +68,21 @@ namespace UI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> WriterLogin(Writer writer)
+        public async Task<IActionResult> WriterLogin(Writer writer, string recaptchaResponse)
         {
             var writerUserInfo = writerManager.Authenticate(writer.WriterEmail, writer.WriterPassword);
 
             if (writerUserInfo != null)
             {
+                // ReCAPTCHA doğrulamasını yap
+                var isCaptchaValid = await _recaptchaService.ValidateRecaptchaAsync(recaptchaResponse);
+
+                if (!isCaptchaValid)
+                {
+                    ModelState.AddModelError(string.Empty, "ReCAPTCHA doğrulaması başarısız oldu.");
+                    return View();
+                }
+
                 // Cookie Authentication ile oturum açma
                 var claims = new List<Claim>
                 {
