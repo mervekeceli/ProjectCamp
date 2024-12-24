@@ -17,7 +17,7 @@ namespace UI.Controllers
         private readonly ReCAPTCHAaService _recaptchaService;
 
         AdminManager adminManager = new AdminManager(new EfAdminDal());
-        WriterManager writerManager = new WriterManager(new EfWriterDal());
+        WriterLoginManager writerManager = new WriterLoginManager(new EfWriterDal());
 
         public LoginController(ReCAPTCHAaService recaptchaService)
         {

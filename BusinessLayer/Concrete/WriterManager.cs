@@ -19,12 +19,6 @@ namespace BusinessLayer.Concrete
             _writerDal = writerDal;
         }
 
-        public Writer Authenticate(string writerMail, string password)
-        {
-            var writer = _writerDal.Authenticate(writerMail, password);
-            return writer;
-        }
-
         public Writer GetById(int id)
         {
             return _writerDal.Get(x=>x.WriterId == id);
