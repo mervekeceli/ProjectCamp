@@ -18,7 +18,7 @@ namespace UI.Controllers
             var defaultList = new DefaultViewModel
             {
                 Headings = headingManager.GetList(),
-                Contents = contentManager.GetList()
+                Contents = contentManager.GetList(null)
             };
             return PartialView(defaultList);
         }
@@ -31,7 +31,7 @@ namespace UI.Controllers
                 defaultList = new DefaultViewModel
                 {
                     Headings = headingManager.GetList() ?? new List<Heading>(),
-                    Contents = contentManager.GetList() ?? new List<Content>()
+                    Contents = contentManager.GetList(null) ?? new List<Content>()
                 };
             }
             else
