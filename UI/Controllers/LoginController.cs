@@ -19,10 +19,10 @@ namespace UI.Controllers
         AdminManager adminManager = new AdminManager(new EfAdminDal());
         WriterLoginManager writerManager = new WriterLoginManager(new EfWriterDal());
 
-        public LoginController(ReCAPTCHAaService recaptchaService)
-        {
-            _recaptchaService = recaptchaService;
-        }
+        //public LoginController(ReCAPTCHAaService recaptchaService)
+        //{
+        //    _recaptchaService = recaptchaService;
+        //}
 
         [HttpGet]
         public IActionResult AdminLogin()
