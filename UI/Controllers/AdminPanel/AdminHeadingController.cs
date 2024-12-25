@@ -4,7 +4,7 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace UI.Controllers
+namespace UI.Controllers.AdminPanel
 {
     public class AdminHeadingController : Controller
     {
@@ -74,7 +74,7 @@ namespace UI.Controllers
             return RedirectToAction("Index");
         }
 
-        
+
         public IActionResult DeleteHeading(int id)
         {
             var headingValue = headingManager.GetById(id);

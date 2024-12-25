@@ -7,7 +7,7 @@ using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace UI.Controllers
+namespace UI.Controllers.AdminPanel
 {
     public class AdminCategoryController : Controller
     {
@@ -18,7 +18,7 @@ namespace UI.Controllers
         public IActionResult Index()
         {
             string adminUserName = User.Identity.Name; //Giriş yapan kullanıcının adını Claims'den alır.
-            
+
             if (string.IsNullOrEmpty(adminUserName))
             {
                 //Eğer session boşsa, login sayfasına yönlendirir.

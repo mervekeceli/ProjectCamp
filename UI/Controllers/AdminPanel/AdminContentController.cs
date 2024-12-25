@@ -3,7 +3,7 @@ using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 
-namespace UI.Controllers
+namespace UI.Controllers.AdminPanel
 {
     public class AdminContentController : Controller
     {
@@ -23,7 +23,7 @@ namespace UI.Controllers
         public IActionResult GetAllContent(string p)
         {
             var values = contentManager.GetList(p);
-            
+
             //var values = context.Contents.ToList();
             return View(values);
         }

@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    var charts = new System.Web.Helpers.Chart(500, 500);
+    charts.AddTitle("MVC Camp Grafik").AddLegend("İçerik").AddSeries("MVC Kamp",
+    xValue: new[] { "Yazılım", "teknoloji", "Spor", "Seyehat" }, yValues: new[] { "4", "6", "1", "23" }).Write();
+}

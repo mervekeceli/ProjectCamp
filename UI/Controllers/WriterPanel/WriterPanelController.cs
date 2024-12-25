@@ -54,7 +54,7 @@ namespace UI.Controllers.WriterPanel
             return View();
         }
 
-        public IActionResult MyHeading(string email)
+        public IActionResult MyHeading(string email, int page = 1)
         {
             var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
             email = User.FindFirstValue(ClaimTypes.Email);
@@ -65,9 +65,10 @@ namespace UI.Controllers.WriterPanel
                 // Eğer claim bilgisi yoksa, kullanıcıyı giriş sayfasına yönlendirebilirsiniz
                 return RedirectToAction("Login", "Account");
             }
+            ViewBag.page = page;
 
             var writerIdInfo = context.Writers.Where(x => x.WriterEmail == email).Select(x => x.WriterId).FirstOrDefault();
-            var values = headingManager.GetListByWriter(writerIdInfo);
+            var values = headingManager.GetListByWriter(writerIdInfo).ToPagedList(page, 5);
             return View(values);
         }
 
@@ -133,6 +134,7 @@ namespace UI.Controllers.WriterPanel
 
         public IActionResult AllHeading(int page = 1)
         {
+            ViewBag.page = page;
             var allHeadings = headingManager.GetList().ToPagedList(page, 5);
             return View(allHeadings);
         }

@@ -5,7 +5,7 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using ValidationResult = FluentValidation.Results.ValidationResult;
 
-namespace UI.Controllers
+namespace UI.Controllers.AdminPanel
 {
     public class AdminWriterController : Controller
     {

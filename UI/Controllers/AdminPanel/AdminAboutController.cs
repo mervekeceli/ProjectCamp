@@ -3,7 +3,7 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
-namespace UI.Controllers
+namespace UI.Controllers.AdminPanel
 {
     public class AdminAboutController : Controller
     {

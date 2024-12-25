@@ -3,13 +3,13 @@ using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace UI.Controllers
+namespace UI.Controllers.AdminPanel
 {
     public class AdminGalleryController : Controller
     {
         ImageFileManager imageFileManager = new ImageFileManager(new EfImageFileDal());
 
-        [Authorize(Roles ="B")]
+        [Authorize(Roles = "B")]
         public IActionResult Index()
         {
             var files = imageFileManager.GetList();

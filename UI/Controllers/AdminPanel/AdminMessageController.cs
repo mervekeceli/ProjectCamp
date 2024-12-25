@@ -6,7 +6,7 @@ using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace UI.Controllers
+namespace UI.Controllers.AdminPanel
 {
     public class AdminMessageController : Controller
     {
