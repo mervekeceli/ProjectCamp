@@ -5,14 +5,44 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-@using (Html.BeginForm("GetAllContent", "AdminContent", FormMethod.Post))
-{
-    <p>Aranacak kelimeyi girin: @Html.TextBox("p")</p>
-    <input type="submit" value="Ara" />
-}
-
-@foreach (var item in Model)
-{
-    <p>@item.ContentValue</p>
-}
-
+<br />
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                @using (Html.BeginForm("GetAllContent", "AdminContent", FormMethod.Post))
+                {
+                    <div class="input-group input-group-lg">
+                        <input type="search" name="p" class="form-control form-control-lg" placeholder="İçeriklerde Ara">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-lg btn-default">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-10 offset-md-1">
+                <div class="list-group">
+                    @foreach (var item in Model)
+                    {
+                        <div class="list-group-item">
+                            <div class="row">
+                                <div class="col px-4">
+                                    <div>
+                                        <div class="float-right">@item.ContentDate</div>
+                                        <h3>@item.Heading.HeadingName</h3>
+                                        <p class="mb-0">@item.ContentValue</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

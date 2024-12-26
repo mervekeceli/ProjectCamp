@@ -11,9 +11,12 @@ namespace UI.Controllers.AdminPanel
     {
         WriterManager writerManager = new WriterManager(new EfWriterDal());
         WriterValidator writerValidator = new WriterValidator();
-        public IActionResult Index()
+        public IActionResult Index(int pageNumber = 1, int pageSize = 12)
         {
-            var writerValues = writerManager.GetList();
+            var writerValues = writerManager.GetList()
+                .Skip((pageNumber -1) * pageSize)
+                .Take(pageSize)
+                .ToList();
             return View(writerValues);
         }
 
