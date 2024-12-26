@@ -9,7 +9,7 @@ namespace UI.Controllers.AdminPanel
     {
         ImageFileManager imageFileManager = new ImageFileManager(new EfImageFileDal());
 
-        [Authorize(Roles = "B")]
+        [Authorize(Roles = "A")]
         public IActionResult Index()
         {
             var files = imageFileManager.GetList();

@@ -1,5 +1,9 @@
-﻿@using EntityLayer.Concrete
-@model List<About>
+﻿@using X.PagedList
+@using X.PagedList.Mvc
+@using X.PagedList.Mvc.Core
+
+@using EntityLayer.Concrete
+@model X.PagedList.IPagedList<About>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -45,3 +49,20 @@
     <!-- /.card -->
 </div>
 <!-- /.col -->
+<!-- Pagination -->
+<div class="pagination-container">
+    @Html.PagedListPager((IPagedList)Model,
+            page => Url.Action("Index", new { page }),
+            new PagedListRenderOptions
+            {
+                UlElementClasses = new List<string> { "pagination", "justify-content-center" },
+                LiElementClasses = new[] { "page-item", "page-link", (Convert.ToString(ViewBag.page) == Url.Action("page") ? "active" : "") },
+                LinkToPreviousPageFormat = "Önceki",
+                LinkToNextPageFormat = "Sonraki",
+                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                MaximumPageNumbersToDisplay = 5,
+            })
+</div>

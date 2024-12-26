@@ -135,7 +135,7 @@ namespace UI.Controllers.WriterPanel
         public IActionResult AllHeading(int page = 1)
         {
             ViewBag.page = page;
-            var allHeadings = headingManager.GetList().ToPagedList(page, 5);
+            var allHeadings = headingManager.GetList().ToPagedList(page, 10);
             return View(allHeadings);
         }
     }

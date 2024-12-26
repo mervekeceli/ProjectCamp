@@ -23,6 +23,10 @@ namespace UI.Controllers.AdminPanel
         public IActionResult GetAllContent(string p)
         {
             var values = contentManager.GetList(p);
+            if (string.IsNullOrEmpty(p))
+            {
+                values = contentManager.GetList();
+            }
 
             //var values = context.Contents.ToList();
             return View(values);

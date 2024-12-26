@@ -17,7 +17,7 @@ namespace UI.Controllers.AdminPanel
         public IActionResult Index(int page = 1)
         {
             ViewBag.page = page;
-            var headingValues = headingManager.GetList().ToPagedList(page, 6);
+            var headingValues = headingManager.GetList().ToPagedList(page, 10);
             return View(headingValues);
         }
 

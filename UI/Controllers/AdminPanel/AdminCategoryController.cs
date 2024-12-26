@@ -6,6 +6,8 @@ using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using X.PagedList.Extensions;
 
 namespace UI.Controllers.AdminPanel
 {
@@ -15,16 +17,17 @@ namespace UI.Controllers.AdminPanel
 
 
         [Authorize(Roles = "A")]
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            string adminUserName = User.Identity.Name; //Giriş yapan kullanıcının adını Claims'den alır.
+            string adminUserName = User.FindFirstValue(ClaimTypes.Name); //Giriş yapan kullanıcının adını Claims'den alır.
 
             if (string.IsNullOrEmpty(adminUserName))
             {
                 //Eğer session boşsa, login sayfasına yönlendirir.
                 return RedirectToAction("Login", "AdminLogin");
             }
-            var categoryValues = categoryManager.GetList();
+            ViewBag.page = page;
+            var categoryValues = categoryManager.GetList().ToPagedList(page, 10);
             return View(categoryValues);
         }
 
