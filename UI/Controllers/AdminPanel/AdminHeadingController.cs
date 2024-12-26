@@ -3,6 +3,7 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using X.PagedList.Extensions;
 
 namespace UI.Controllers.AdminPanel
 {
@@ -13,9 +14,10 @@ namespace UI.Controllers.AdminPanel
         HeadingManager headingManager = new HeadingManager(new EfHeadingDal());
         CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
         WriterManager writerManager = new WriterManager(new EfWriterDal());
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            var headingValues = headingManager.GetList();
+            ViewBag.page = page;
+            var headingValues = headingManager.GetList().ToPagedList(page, 6);
             return View(headingValues);
         }
 

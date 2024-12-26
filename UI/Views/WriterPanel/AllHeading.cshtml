@@ -113,15 +113,15 @@
 <!-- Pagination -->
 <div class="pagination-container">
     @Html.PagedListPager((IPagedList)Model,
-    page => Url.Action("AllHeading",
-    new { page }), 
-    new PagedListRenderOptions
-    {
-        LiElementClasses = new List<string> { "page-link", (Convert.ToString(ViewBag.page) == Url.Action("page") ? "active" : "") },
-        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-        LinkToPreviousPageFormat = "Geri",
-        LinkToNextPageFormat = "İleri",
-        UlElementClasses = new List<string> { "pagination", "justify-content-center" },
-        ActiveLiElementClass = "active",
-    })
+            page => Url.Action("AllHeading", new { page }),
+            new PagedListRenderOptions
+            {
+                UlElementClasses = new List<string> { "pagination", "justify-content-center" },
+                LiElementClasses = new[] { "page-item", "page-link", (Convert.ToString(ViewBag.page) == Url.Action("page") ? "active" : "") },
+                LinkToPreviousPageFormat = "Önceki",
+                LinkToNextPageFormat = "Sonraki",
+                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                MaximumPageNumbersToDisplay = 5,
+            })
 </div>

@@ -106,13 +106,19 @@ namespace UI.Controllers
 
         public async Task<IActionResult> Logout()
         {
-            // ClaimsIdentity oluşturun ve kullanıcıyı çıkışa yönlendirin
-            var identity = new ClaimsIdentity();
-            var principal = new ClaimsPrincipal(identity);
+            // Kullanıcı kimliğini almak için claims üzerinden kontrol yapıyoruz
+            var userRoles = HttpContext.User.Claims
+                .Where(c => c.Type == ClaimTypes.Role)
+                .Select(c => c.Value)
+                .ToList();
 
             // Kullanıcı kimliğini temizle
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
+            if (userRoles.Contains("A"))
+            {
+                return RedirectToAction("AdminLogin", "Login");
+            }
             // Login sayfasına yönlendirme
             return RedirectToAction("Headings", "Default");
         }
