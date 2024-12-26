@@ -84,5 +84,11 @@ namespace UI.Controllers.AdminPanel
             headingManager.HeadingDelete(headingValue);
             return RedirectToAction("Index");
         }
+
+        public IActionResult HeadingReport()
+        {
+            var headingValues = headingManager.GetList();
+            return View(headingValues);
+        }
     }
 }

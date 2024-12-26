@@ -57,7 +57,7 @@ namespace UI.Controllers
             else
             {
                 // Giriş başarısızsa login sayfasına yönlendir
-                return RedirectToAction("Login", "Admin");
+                return RedirectToAction("AdminLogin");
             }
         }
 
