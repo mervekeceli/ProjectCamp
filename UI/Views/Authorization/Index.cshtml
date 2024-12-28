@@ -1,0 +1,56 @@
+﻿@using EntityLayer.Concrete
+@model List<Admin>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<div class="container-fluid">
+    <a class="btn btn-info" href="/AdminCategory/AddCategory">Yeni Admin Tanımla</a>
+</div>
+<br />
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Adminler</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Admin Adı </th>
+                                <th>Rolü</th>
+                                <th>Durum</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var admin in Model)
+                            {
+                                <tr>
+                                    <th>@admin.AdminId</th>
+                                    <td>@admin.AdminUserName</td>
+                                    <td>@admin.AdminRole</td>
+                                    <td>Durum</td>
+                                    <td>
+                                        <a href="/AdminCategory/DeleteCategory/@admin.AdminId" class="btn btn-danger btn-sm">Pasif Yap</a> |
+                                        <a href="/AdminCategory/EditCategory/@admin.AdminId" class="btn btn-warning btn-sm">Yetkisini Değiştir</a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </div>
+</div>
+
