@@ -1,0 +1,49 @@
+﻿@model EntityLayer.Concrete.Admin
+@{
+    ViewData["Title"] = "AddAdmin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-lg-12 col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-success">
+                <div class="card-header">
+                    <h3 class="card-title">Yeni Admin Ekle</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                @using (Html.BeginForm("AddAdmin", "Authorization", FormMethod.Post))
+                {
+                    <div class="card-body">
+                        <div class="form-group">
+                            @Html.Label("Admin Kullanıcı Mail")
+                            @Html.TextBoxFor(x => x.AdminUserName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.AdminUserName)
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Şifre")
+                            @Html.TextBoxFor(x => x.AdminPassword, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.AdminPassword)
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Rolü Seçiniz")
+                            @Html.TextBoxFor(x => x.AdminRole, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.AdminRole)
+                        </div>
+                        <button class="btn btn-success">Kaydet</button>
+                    </div>
+                }
+            </div>
+            <!-- /.card -->
+        </div>
+        <!--/.col (left) -->
+    </div>
+    <!-- /.row -->
+</div><!-- /.container-fluid -->
+

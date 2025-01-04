@@ -28,3 +28,6 @@ Bu yaklaþýmda: <br />
 Session Kullanýmýyla Karþýlaþtýrma<br>
 Session: Oturumda saklanan veriler sunucu tarafýnda tutulur. Kullanýcý sayfalar arasýnda gezinirken oturum bilgileri kaybolmaz.<br>
 Claims: Kullanýcý bilgileri genellikle kimlik doðrulama sýrasýnda saklanýr ve JWT Token veya ASP.NET Core Identity gibi sistemlerle birlikte kullanýlýr. Bu bilgiler istemci tarafýnda (browser) taþýnýr (cookie veya token þeklinde).<br>
+<hr>
+Eklenecekler <br>
+- Yetkilendirme için Role seçeneði DropDown list ile gelsin.<br>
