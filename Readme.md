@@ -1,33 +1,30 @@
-1.Proje ASP.Net 6 kullanılarak oluşturuldu <br />
-2.Katmanlar oluşturuldu ve Entity classları eklendi <br />
-3.DBContext ayarları ile db konfigürasyonları yapıldı <br />
-4.Migration ile db oluşturuldu <br />
+1.Proje ASP.Net 6 kullanÄ±larak oluÅŸturuldu <br />
+2.Katmanlar oluÅŸturuldu ve Entity classlarÄ± eklendi <br />
+3.DBContext ayarlarÄ± ile db konfigÃ¼rasyonlarÄ± yapÄ±ldÄ± <br />
+4.Migration ile db oluÅŸturuldu <br />
  -add-migration MigName <br />
  -update-database <br /><br />
 
-NOT: Writer tablosunda sonradan güncelleme yaptıktan sonra şu şekidle migration yaptırdı:<br />
+NOT: Writer tablosunda sonradan gÃ¼ncelleme yaptÄ±ktan sonra ÅŸu ÅŸekidle migration yaptÄ±rdÄ±:<br />
 - EntityFrameworkcore\add-migration MigName <br />
 - EntityFrameworkcore\update-databse <br />
 
--> Partial Kullanımı için: @await Html.PartialAsync("AboutPartial") <br />
+-> Partial KullanÄ±mÄ± iÃ§in: @await Html.PartialAsync("AboutPartial") <br />
 
 <hr />
-<br /> <br />
-
--> <h5>Oturum Yönetimi</h5> <br />
+-> <h5>Oturum YÃ¶netimi</h5> <br />
 <hr />
+Bu yaklaÅŸÄ±mda: <br />
 
-Bu yaklaşımda: <br />
-
-- Session kullanmıyorsunuz, bunun yerine Claims ile kimlik doğrulama yapılıyor. <br />
-- Authorization attribute'u ([Authorize]) ile rol kontrolü yaparak güvenli bir şekilde kullanıcının yetkilerini kontrol ediyorsunuz. <br />
-- Çıkış işlemi için SignOutAsync kullanarak güvenli bir şekilde kullanıcıyı oturumdan çıkarıyorsunuz. <br />
-- Bu yöntemle uygulamanız daha güvenli ve yönetimi kolay hale gelir. <br  />
+- Session kullanmÄ±yorsunuz, bunun yerine Claims ile kimlik doÄŸrulama yapÄ±lÄ±yor. <br />
+- Authorization attribute'u ([Authorize]) ile rol kontrolÃ¼ yaparak gÃ¼venli bir ÅŸekilde kullanÄ±cÄ±nÄ±n yetkilerini kontrol ediyorsunuz. <br />
+- Ã‡Ä±kÄ±ÅŸ iÅŸlemi iÃ§in SignOutAsync kullanarak gÃ¼venli bir ÅŸekilde kullanÄ±cÄ±yÄ± oturumdan Ã§Ä±karÄ±yorsunuz. <br />
+- Bu yÃ¶ntemle uygulamanÄ±z daha gÃ¼venli ve yÃ¶netimi kolay hale gelir. <br  />
 
 <hr />
-Session Kullanımıyla Karşılaştırma<br>
-Session: Oturumda saklanan veriler sunucu tarafında tutulur. Kullanıcı sayfalar arasında gezinirken oturum bilgileri kaybolmaz.<br>
-Claims: Kullanıcı bilgileri genellikle kimlik doğrulama sırasında saklanır ve JWT Token veya ASP.NET Core Identity gibi sistemlerle birlikte kullanılır. Bu bilgiler istemci tarafında (browser) taşınır (cookie veya token şeklinde).<br>
+Session KullanÄ±mÄ±yla KarÅŸÄ±laÅŸtÄ±rma<br>
+Session: Oturumda saklanan veriler sunucu tarafÄ±nda tutulur. KullanÄ±cÄ± sayfalar arasÄ±nda gezinirken oturum bilgileri kaybolmaz.<br>
+Claims: KullanÄ±cÄ± bilgileri genellikle kimlik doÄŸrulama sÄ±rasÄ±nda saklanÄ±r ve JWT Token veya ASP.NET Core Identity gibi sistemlerle birlikte kullanÄ±lÄ±r. Bu bilgiler istemci tarafÄ±nda (browser) taÅŸÄ±nÄ±r (cookie veya token ÅŸeklinde).<br>
 <hr>
 Eklenecekler <br>
-- Yetkilendirme için Role seçeneği DropDown list ile gelsin.<br>
+- Yetkilendirme iÃ§in Role seÃ§eneÄŸi DropDown list ile gelsin.<br>
