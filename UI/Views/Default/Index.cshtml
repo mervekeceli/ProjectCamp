@@ -1,38 +1,35 @@
 ﻿@using UI.Controllers
 @model DefaultViewModel
 
-<div class="tab-pane" id="timeline">
-    <!-- The timeline -->
-    <div class="timeline timeline-inverse">
-        @if (Model.Contents is not null)
-        {
-            @foreach (var item in Model.Contents)
-            {
-                <!-- timeline time label -->
-                <div class="time-label">
-                    <span class="bg-gradient-purple">
-                        @(((DateTime)item.ContentDate).ToString("dd-MMMM-yyyy")) - @item.Writer.WriterName @item.Writer.WriterSurName
-                    </span>
+<br />
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <div class="list-group">
+                    @if (Model.Contents is not null)
+                    {
+                        @foreach (var item in Model.Contents)
+                        {
+                            <div class="list-group-item">
+                                <div class="row">
+                                    <div class="col px-4">
+                                        <div>
+                                            <div class="float-right">@item.Writer.WriterName @item.Writer.WriterSurName</div><br />
+                                            <div class="float-right">@item.ContentDate</div>
+                                            <h3>@item.Heading.HeadingName</h3>
+                                            <p class="mb-0">@item.ContentValue</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
                 </div>
-                <!-- /.timeline-label -->
-                <!-- timeline item -->
-                <div>
-                    <i class="fas fa-comments bg-warning"></i>
-
-                    <div class="timeline-item">
-
-                        <h3 class="timeline-header"><a href="#">@item.Heading.HeadingName</a></h3>
-
-                        <div class="timeline-body">
-                            @item.ContentValue
-                        </div>
-                    </div>
-                </div>
-            }
-        }
-        <!-- END timeline item -->
-        <div>
-            <i class="far fa-clock bg-gray"></i>
+            </div>
         </div>
+        <div><br /></div>
     </div>
-</div>
+</section>

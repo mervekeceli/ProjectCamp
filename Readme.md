@@ -26,5 +26,3 @@ Session Kullanımıyla Karşılaştırma<br>
 Session: Oturumda saklanan veriler sunucu tarafında tutulur. Kullanıcı sayfalar arasında gezinirken oturum bilgileri kaybolmaz.<br>
 Claims: Kullanıcı bilgileri genellikle kimlik doğrulama sırasında saklanır ve JWT Token veya ASP.NET Core Identity gibi sistemlerle birlikte kullanılır. Bu bilgiler istemci tarafında (browser) taşınır (cookie veya token şeklinde).<br>
 <hr>
-Eklenecekler <br>
-- Yetkilendirme için Role seçeneği DropDown list ile gelsin.<br>

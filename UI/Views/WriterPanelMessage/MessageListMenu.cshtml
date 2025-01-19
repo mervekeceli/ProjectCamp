@@ -1,4 +1,5 @@
-﻿
+﻿@using EntityLayer.Concrete
+@model List<Message>
 <div class="col-md-3">
     <a href="/WriterPanelMessage/NewMessage/" class="btn btn-primary btn-block mb-3">Yeni Mesaj Oluştur</a>
 
@@ -18,13 +19,13 @@
                 <li class="nav-item active">
                     <a href="/WriterPanelMessage/Inbox/" class="nav-link">
                         <i class="fas fa-inbox"></i> Gelen Mesajlar
-                        <span class="badge bg-warning float-right">12</span>
+                        <span class="badge bg-warning float-right">@Model.Select(x=>x.ReceiverMail).Count()</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="/WriterPanelMessage/Sendbox/" class="nav-link">
                         <i class="far fa-envelope"></i> Gönderilen Mesajlar
-                        <span class="badge bg-warning float-right">3</span>
+                        <span class="badge bg-warning float-right">@Model.Select(x => x.SenderMail).Count()</span>
                     </a>
                 </li>
                 <li class="nav-item">
