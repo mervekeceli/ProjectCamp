@@ -33,7 +33,7 @@
 
                         <div class="form-group">
                             @Html.Label("Rolü Seçiniz")
-                            @Html.TextBoxFor(x => x.AdminRole, new { @class = "form-control" })
+                            @Html.DropDownListFor(x => x.AdminRole, (IEnumerable<SelectListItem>)ViewData["AdminRoles"], new { @class = "form-control" })
                             @Html.ValidationMessageFor(x => x.AdminRole)
                         </div>
                         <button class="btn btn-success">Kaydet</button>

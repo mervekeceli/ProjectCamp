@@ -2,6 +2,7 @@
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace UI.Controllers
 {
@@ -17,6 +18,14 @@ namespace UI.Controllers
         [HttpGet]
         public IActionResult AddAdmin()
         {
+            var roles = new List<string> { "A", "B", "C" };
+            ViewData["AdminRoles"] = roles.Select(x => new SelectListItem
+            {
+                Text = x,
+                Value = x
+            }).ToList();
+
+            ViewBag.Roles = roles;
             return View();
         }
 
