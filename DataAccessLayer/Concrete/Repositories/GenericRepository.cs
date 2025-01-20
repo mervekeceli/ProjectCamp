@@ -31,7 +31,7 @@ namespace DataAccessLayer.Concrete.Repositories
             return _object.SingleOrDefault(filter);
         }
 
-        public void Insert(T item)
+        public virtual void Insert(T item)
         {
             var addedEntity = context.Entry(item);
             addedEntity.State = EntityState.Added;

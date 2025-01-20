@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.Helpers;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,7 @@ namespace UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddAdmin(Admin admin)
+        public IActionResult AddAdmin(Admin admin, PasswordHelper passwordHelper)
         {
             adminManager.AdminAdd(admin);
             return RedirectToAction("Index");
